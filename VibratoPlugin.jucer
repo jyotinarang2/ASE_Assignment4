@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT name="VibratoPlugin" projectType="audioplug" buildStandalone="0"
+              jucerVersion="5.3.0" buildVST3="1" buildAU="0" buildAUv3="0">
+  <MAINGROUP id="V1rRHO" name="VibratoPlugin">
+    <GROUP id="{1DFDBBD4-31D7-3314-9858-8478AE7209C7}" name="Source">
+      <FILE id="X0jFyH" name="ErrorDef.h" compile="0" resource="0" file="Source/ErrorDef.h"/>
+      <FILE id="YYD5T0" name="Synthesis.h" compile="0" resource="0" file="Source/Synthesis.h"/>
+      <FILE id="Uhacdo" name="RingBuffer.h" compile="0" resource="0" file="Source/RingBuffer.h"/>
+      <FILE id="Y1J3BO" name="Lfo.h" compile="0" resource="0" file="Source/Lfo.h"/>
+      <FILE id="k4NdHP" name="Vibrato.h" compile="0" resource="0" file="Source/Vibrato.h"/>
+      <FILE id="bzUhrU" name="Vibrato.cpp" compile="1" resource="0" file="Source/Vibrato.cpp"/>
+      <FILE id="VKP9ZA" name="Util.h" compile="0" resource="0" file="Source/Util.h"/>
+      <FILE id="Doye2n" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="bc7sYL" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="lm7sG3" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="t4OJjd" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+    <VS2017 targetFolder="Builds/VisualStudio2017" vst3Folder="">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2017>
+    <VS2015 targetFolder="Builds/VisualStudio2015" vst3Folder="">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2015>
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../Desktop/JUCE latest version/JUCE/modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_video" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <JUCEOPTIONS/>
+  <LIVE_SETTINGS>
+    <WINDOWS/>
+  </LIVE_SETTINGS>
+</JUCERPROJECT>
