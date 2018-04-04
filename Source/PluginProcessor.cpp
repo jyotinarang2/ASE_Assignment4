@@ -10,7 +10,7 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
-
+#define MOD_WIDTH  0.1
 //==============================================================================
 VibratoPluginAudioProcessor::VibratoPluginAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -28,6 +28,7 @@ VibratoPluginAudioProcessor::VibratoPluginAudioProcessor()
 
 VibratoPluginAudioProcessor::~VibratoPluginAudioProcessor()
 {
+	CVibrato::destroyInstance(cVibrato);
 }
 
 //==============================================================================
@@ -38,29 +39,23 @@ const String VibratoPluginAudioProcessor::getName() const
 
 bool VibratoPluginAudioProcessor::acceptsMidi() const
 {
-   #if JucePlugin_WantsMidiInput
-    return true;
-   #else
+  
     return false;
-   #endif
+   
 }
 
 bool VibratoPluginAudioProcessor::producesMidi() const
 {
-   #if JucePlugin_ProducesMidiOutput
-    return true;
-   #else
+   
     return false;
-   #endif
+   
 }
 
 bool VibratoPluginAudioProcessor::isMidiEffect() const
 {
-   #if JucePlugin_IsMidiEffect
-    return true;
-   #else
+ 
     return false;
-   #endif
+  
 }
 
 double VibratoPluginAudioProcessor::getTailLengthSeconds() const
@@ -92,13 +87,44 @@ void VibratoPluginAudioProcessor::changeProgramName (int index, const String& ne
 {
 }
 
+
 //==============================================================================
 void VibratoPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+	error_t = CVibrato::createInstance(cVibrato);
+	if (error_t == kUnknownError) {
+		//std::cout << "Vibrato instance could not be created";
+		return;
+	}
+	error_t = cVibrato->initInstance(MOD_WIDTH, sampleRate, getTotalNumInputChannels());
+	cVibrato->setParam(CVibrato::kParamModWidthInS, 0.01f);
+	cVibrato->setParam(CVibrato::kParamModFreqInHz, 5);
 }
-
+float VibratoPluginAudioProcessor::getParameter(int param_index) {
+	if (param_index == 0) {
+		return cVibrato->getParam(CVibrato::VibratoParam_t::kParamModWidthInS);
+		
+	}
+	else if (param_index == 1) {
+		return cVibrato->getParam(CVibrato::VibratoParam_t::kParamModFreqInHz);
+	}
+	else {
+		jassert("Invalid index");
+	}
+}
+void VibratoPluginAudioProcessor::setParameter(int param_index, float param_value) {
+	if (param_index == 0 && cVibrato) {
+		cVibrato->setParam(CVibrato::VibratoParam_t::kParamModWidthInS, param_value);
+	}
+	else if (param_index == 1 && cVibrato) {
+		cVibrato->setParam(CVibrato::VibratoParam_t::kParamModFreqInHz, param_value);
+	}
+	else {
+		jassert("Invalid index");
+	}
+}
 void VibratoPluginAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
@@ -131,6 +157,10 @@ bool VibratoPluginAudioProcessor::isBusesLayoutSupported (const BusesLayout& lay
 
 void VibratoPluginAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
+	if (pluginByPass) {
+		setParameter(0, 0.0f);
+		setParameter(1, 0.0f);
+    }
     ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
@@ -150,13 +180,16 @@ void VibratoPluginAudioProcessor::processBlock (AudioBuffer<float>& buffer, Midi
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
-    {
-        auto* channelData = buffer.getWritePointer (channel);
+    //for (int channel = 0; channel < totalNumInputChannels; ++channel)
+    //{
+     //   auto* channelData = buffer.getWritePointer (channel);
 
         // ..do something to the data...
-    }
+    //}
+	float **writePointer = buffer.getArrayOfWritePointers();
+	cVibrato->process(writePointer, writePointer, buffer.getNumSamples());
 }
+//void VibratoPlugin::
 
 //==============================================================================
 bool VibratoPluginAudioProcessor::hasEditor() const

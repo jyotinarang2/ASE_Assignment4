@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT name="VibratoPlugin" projectType="audioplug" buildStandalone="0"
+<JUCERPROJECT name="VibratoPlugin" projectType="audioplug" buildStandalone="1"
               jucerVersion="5.3.0" buildVST3="1" buildAU="0" buildAUv3="0">
   <MAINGROUP id="V1rRHO" name="VibratoPlugin">
     <GROUP id="{1DFDBBD4-31D7-3314-9858-8478AE7209C7}" name="Source">

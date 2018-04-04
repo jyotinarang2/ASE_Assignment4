@@ -25,6 +25,7 @@ VibratoPluginAudioProcessorEditor::VibratoPluginAudioProcessorEditor (VibratoPlu
     modulationWidth.setPopupDisplayEnabled (true, false, this);
     modulationWidth.setTextValueSuffix (" Modulation Width");
     modulationWidth.setValue(1.0);
+	modulationWidth.addListener(this);
     // this function adds the slider to the editor
     addAndMakeVisible (&modulationWidth);
     modulationFrequency.setSliderStyle (Slider::LinearBarVertical);
@@ -33,9 +34,11 @@ VibratoPluginAudioProcessorEditor::VibratoPluginAudioProcessorEditor (VibratoPlu
     modulationFrequency.setPopupDisplayEnabled (true, false, this);
     modulationFrequency.setTextValueSuffix (" Modulation Frequency");
     modulationFrequency.setValue(1.0);
+	modulationFrequency.addListener(this);
     // this function adds the slider to the editor
     addAndMakeVisible (&modulationFrequency);
 	addAndMakeVisible(&toggleButton);
+	toggleButton.addListener(this);
     
 }
 
@@ -43,6 +46,25 @@ VibratoPluginAudioProcessorEditor::~VibratoPluginAudioProcessorEditor()
 {
 }
 
+void VibratoPluginAudioProcessorEditor::sliderValueChanged(Slider* slider)
+{
+	if (slider == &modulationWidth) {
+		float widthValue = modulationWidth.getValue();
+		processor.setParameter(0, widthValue);
+	}
+	else if (slider == &modulationFrequency) {
+		float freqValue = modulationFrequency.getValue();
+		processor.setParameter(1, freqValue);
+	}
+	DBG("Debugging and checking this");
+}
+
+void VibratoPluginAudioProcessorEditor::buttonClicked(Button* clickedButton) {
+	std::cout << "Checking";
+	if (clickedButton == &toggleButton) {
+		processor.pluginByPass = toggleButton.getToggleState();
+	}
+}
 //==============================================================================
 void VibratoPluginAudioProcessorEditor::paint (Graphics& g)
 {
