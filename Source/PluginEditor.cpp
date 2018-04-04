@@ -10,8 +10,8 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
-#define MODWIDTH 0;
-#define MODFREQ 1;
+#define MODWIDTH 0
+#define MODFREQ 1
 
 //==============================================================================
 VibratoPluginAudioProcessorEditor::VibratoPluginAudioProcessorEditor (VibratoPluginAudioProcessor& p)
@@ -52,11 +52,11 @@ void VibratoPluginAudioProcessorEditor::sliderValueChanged(Slider* slider)
 {
 	if (slider == &modulationWidth) {
 		float widthValue = modulationWidth.getValue();
-		processor.setParameter(0, widthValue/100);
+		processor.setParameter(MODWIDTH, widthValue/100);
 	}
 	else if (slider == &modulationFrequency) {
 		float freqValue = modulationFrequency.getValue();
-		processor.setParameter(1, freqValue);
+		processor.setParameter(MODFREQ, freqValue);
 	}
 	
 }
