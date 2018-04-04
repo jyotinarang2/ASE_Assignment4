@@ -69,10 +69,10 @@ public:
 	
 	
 
-	bool modulationWidthChanged = false;
-	bool modualtionFreqChanged = false;
-	float modulationWidth = 0.0f;
-	float modulationFreq = 0.0f;
+	//bool modulationWidthChanged = false;
+	//bool modualtionFreqChanged = false;
+	//float modulationWidth = 0.0f;
+	//float modulationFreq = 0.0f;
 
 private:
     CVibrato *cVibrato = 0;
