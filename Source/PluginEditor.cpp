@@ -22,12 +22,16 @@ VibratoPluginAudioProcessorEditor::VibratoPluginAudioProcessorEditor (VibratoPlu
     setSize (400, 300);
         // these define the parameters of our slider object
     modulationWidth.setSliderStyle (Slider::LinearBarVertical);
-    modulationWidth.setRange(0, 100, 1.0);
+    modulationWidth.setRange(0, 1, 0.01);
     modulationWidth.setTextBoxStyle (Slider::NoTextBox, false, 90, 0);
     modulationWidth.setPopupDisplayEnabled (true, false, this);
     modulationWidth.setTextValueSuffix (" Modulation Width");
-    modulationWidth.setValue(1);
+    modulationWidth.setValue(0.01);
+	
 	modulationWidth.addListener(this);
+	addAndMakeVisible(widthLabel);
+	widthLabel.setText("Width(Sec)", dontSendNotification);
+	widthLabel.attachToComponent(&modulationWidth, true);
     // this function adds the slider to the editor
     addAndMakeVisible (&modulationWidth);
     modulationFrequency.setSliderStyle (Slider::LinearBarVertical);
@@ -37,6 +41,9 @@ VibratoPluginAudioProcessorEditor::VibratoPluginAudioProcessorEditor (VibratoPlu
     modulationFrequency.setTextValueSuffix (" Modulation Frequency");
     modulationFrequency.setValue(5);
 	modulationFrequency.addListener(this);
+	addAndMakeVisible(freqLabel);
+	freqLabel.setText("Freq(Hz)", dontSendNotification);
+	freqLabel.attachToComponent(&modulationFrequency, true);
     // this function adds the slider to the editor
     addAndMakeVisible (&modulationFrequency);
 	addAndMakeVisible(&toggleButton);
@@ -65,11 +72,6 @@ void VibratoPluginAudioProcessorEditor::buttonClicked(Button* clickedButton) {
 	
 	if (clickedButton == &toggleButton) {
 	    bool byPassState = toggleButton.getToggleState();
-	    //if(byPassState == true){
-
-	    //    modulationWidth.setValue(0);
-	    //    modulationFrequency.setValue(0);
-	    //}    
 		processor.setParamByPass(byPassState);
 	
 	}
@@ -96,7 +98,7 @@ void VibratoPluginAudioProcessorEditor::resized()
 	// subcomponents in your editor..
 
 	modulationWidth.setBounds(200, 30, 50, getHeight() - 60);
-	modulationFrequency.setBounds(280, 30, 50, getHeight() - 60);
+	modulationFrequency.setBounds(320, 30, 50, getHeight() - 60);
 	toggleButton.setBounds(90, 55, 30, 30);
 
 }

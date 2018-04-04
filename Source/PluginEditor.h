@@ -34,7 +34,9 @@ private:
     // access the processor object that created it.
     VibratoPluginAudioProcessor& processor;
     Slider modulationWidth;
+	Label widthLabel;
     Slider modulationFrequency;
+	Label freqLabel;
     ToggleButton toggleButton;
 
 
