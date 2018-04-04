@@ -10,7 +10,7 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
-#define MOD_WIDTH  0.1
+#define MOD_WIDTH  1
 //==============================================================================
 VibratoPluginAudioProcessor::VibratoPluginAudioProcessor()
 {
