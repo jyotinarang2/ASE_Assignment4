@@ -13,17 +13,8 @@
 #define MOD_WIDTH  0.1
 //==============================================================================
 VibratoPluginAudioProcessor::VibratoPluginAudioProcessor()
-#ifndef JucePlugin_PreferredChannelConfigurations
-     : AudioProcessor (BusesProperties()
-                     #if ! JucePlugin_IsMidiEffect
-                      #if ! JucePlugin_IsSynth
-                       .withInput  ("Input",  AudioChannelSet::stereo(), true)
-                      #endif
-                       .withOutput ("Output", AudioChannelSet::stereo(), true)
-                     #endif
-                       )
-#endif
 {
+	CVibrato::createInstance(cVibrato);
 }
 
 VibratoPluginAudioProcessor::~VibratoPluginAudioProcessor()
@@ -93,11 +84,11 @@ void VibratoPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesP
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-	error_t = CVibrato::createInstance(cVibrato);
-	if (error_t == kUnknownError) {
+	//error_t = CVibrato::createInstance(cVibrato);
+	//if (error_t == kUnknownError) {
 		//std::cout << "Vibrato instance could not be created";
-		return;
-	}
+	//	return;
+	//}
 	error_t = cVibrato->initInstance(MOD_WIDTH, sampleRate, getTotalNumInputChannels());
 	cVibrato->setParam(CVibrato::kParamModWidthInS, 0.01f);
 	cVibrato->setParam(CVibrato::kParamModFreqInHz, 5);
