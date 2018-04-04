@@ -10,6 +10,8 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#define MOD_WIDTH 0;
+#define MOD_FREQ 1;
 
 //==============================================================================
 VibratoPluginAudioProcessorEditor::VibratoPluginAudioProcessorEditor (VibratoPluginAudioProcessor& p)
@@ -20,7 +22,7 @@ VibratoPluginAudioProcessorEditor::VibratoPluginAudioProcessorEditor (VibratoPlu
     setSize (400, 300);
         // these define the parameters of our slider object
     modulationWidth.setSliderStyle (Slider::LinearBarVertical);
-    modulationWidth.setRange(0.0, 127.0, 1.0);
+    modulationWidth.setRange(0.0, 100.0, 1.0);
     modulationWidth.setTextBoxStyle (Slider::NoTextBox, false, 90, 0);
     modulationWidth.setPopupDisplayEnabled (true, false, this);
     modulationWidth.setTextValueSuffix (" Modulation Width");
@@ -62,7 +64,15 @@ void VibratoPluginAudioProcessorEditor::sliderValueChanged(Slider* slider)
 void VibratoPluginAudioProcessorEditor::buttonClicked(Button* clickedButton) {
 	std::cout << "Checking";
 	if (clickedButton == &toggleButton) {
-		processor.pluginByPass = toggleButton.getToggleState();
+	    bool byPassState = toggleButton.getToggleState();
+	    if(byPassState == true){
+	        processor.setParameter(MOD_WIDTH, 0.0f);
+	        processor.setParameter(MOD_FREQ, 0.0f);
+	        modulationWidth.setValue(0);
+	        modulationFrequency.setValue(0);
+	    }    
+		processor.pluginByPass = byPassState;
+	
 	}
 }
 //==============================================================================
