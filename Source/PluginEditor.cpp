@@ -26,7 +26,7 @@ VibratoPluginAudioProcessorEditor::VibratoPluginAudioProcessorEditor (VibratoPlu
     modulationWidth.setTextBoxStyle (Slider::NoTextBox, false, 90, 0);
     modulationWidth.setPopupDisplayEnabled (true, false, this);
     modulationWidth.setTextValueSuffix (" Modulation Width");
-    //modulationWidth.setValue(processor.getParameter(0));
+    modulationWidth.setValue(1);
 	modulationWidth.addListener(this);
     // this function adds the slider to the editor
     addAndMakeVisible (&modulationWidth);
@@ -35,7 +35,7 @@ VibratoPluginAudioProcessorEditor::VibratoPluginAudioProcessorEditor (VibratoPlu
     modulationFrequency.setTextBoxStyle (Slider::NoTextBox, false, 90, 0);
     modulationFrequency.setPopupDisplayEnabled (true, false, this);
     modulationFrequency.setTextValueSuffix (" Modulation Frequency");
-    //modulationFrequency.setValue(processor.getParameter(1));
+    modulationFrequency.setValue(5);
 	modulationFrequency.addListener(this);
     // this function adds the slider to the editor
     addAndMakeVisible (&modulationFrequency);
@@ -52,15 +52,11 @@ void VibratoPluginAudioProcessorEditor::sliderValueChanged(Slider* slider)
 {
 	if (slider == &modulationWidth) {
 		float widthValue = modulationWidth.getValue();
-		processor.modulationWidthChanged = true;
-		processor.modulationWidth = widthValue/100;
-		//processor.setParameter(0, widthValue/100);
+		processor.setParameter(0, widthValue/100);
 	}
 	else if (slider == &modulationFrequency) {
 		float freqValue = modulationFrequency.getValue();
-		processor.modulationWidthChanged = true;
-		processor.modulationFreq = freqValue;
-		//processor.setParameter(1, freqValue);
+		processor.setParameter(1, freqValue);
 	}
 	
 }

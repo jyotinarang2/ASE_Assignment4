@@ -165,14 +165,14 @@ void VibratoPluginAudioProcessor::processBlock (AudioBuffer<float>& buffer, Midi
 		// this code if your algorithm always overwrites all the output channels.
 		for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
 			buffer.clear(i, 0, buffer.getNumSamples());
-		if (modulationWidthChanged) {
+		/*if (modulationWidthChanged) {
 			cVibrato->setParam(CVibrato::VibratoParam_t::kParamModWidthInS, modulationWidth);
 			modulationWidthChanged = false;
 		}
 		if (modualtionFreqChanged) {
 			cVibrato->setParam(CVibrato::VibratoParam_t::kParamModFreqInHz, modulationFreq);
 			modualtionFreqChanged = false;
-		}
+		}*/
 		// This is the place where you'd normally do the guts of your plugin's
 		// audio processing...
 		// Make sure to reset the state if your inner loop is processing
