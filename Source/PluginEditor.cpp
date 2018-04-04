@@ -22,11 +22,11 @@ VibratoPluginAudioProcessorEditor::VibratoPluginAudioProcessorEditor (VibratoPlu
     setSize (400, 300);
         // these define the parameters of our slider object
     modulationWidth.setSliderStyle (Slider::LinearBarVertical);
-    modulationWidth.setRange(0.0, 100.0, 1.0);
+    modulationWidth.setRange(0, 100, 1.0);
     modulationWidth.setTextBoxStyle (Slider::NoTextBox, false, 90, 0);
     modulationWidth.setPopupDisplayEnabled (true, false, this);
     modulationWidth.setTextValueSuffix (" Modulation Width");
-    modulationWidth.setValue(processor.getParameter(0));
+    //modulationWidth.setValue(processor.getParameter(0));
 	modulationWidth.addListener(this);
     // this function adds the slider to the editor
     addAndMakeVisible (&modulationWidth);
@@ -35,7 +35,7 @@ VibratoPluginAudioProcessorEditor::VibratoPluginAudioProcessorEditor (VibratoPlu
     modulationFrequency.setTextBoxStyle (Slider::NoTextBox, false, 90, 0);
     modulationFrequency.setPopupDisplayEnabled (true, false, this);
     modulationFrequency.setTextValueSuffix (" Modulation Frequency");
-    modulationFrequency.setValue(processor.getParameter(1));
+    //modulationFrequency.setValue(processor.getParameter(1));
 	modulationFrequency.addListener(this);
     // this function adds the slider to the editor
     addAndMakeVisible (&modulationFrequency);
