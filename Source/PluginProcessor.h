@@ -60,6 +60,10 @@ public:
     float getParameter(int param_index) override;
     void setParameter(int param_index, float param_value) override;
 	bool pluginByPass = false;
+	bool modulationWidthChanged = false;
+	bool modualtionFreqChanged = false;
+	float modulationWidth = 0.0f;
+	float modulationFreq = 0.0f;
 
 private:
     CVibrato *cVibrato = 0;

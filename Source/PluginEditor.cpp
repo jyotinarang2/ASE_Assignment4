@@ -10,8 +10,8 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
-#define MOD_WIDTH 0;
-#define MOD_FREQ 1;
+#define MODWIDTH 0;
+#define MODFREQ 1;
 
 //==============================================================================
 VibratoPluginAudioProcessorEditor::VibratoPluginAudioProcessorEditor (VibratoPluginAudioProcessor& p)
@@ -52,22 +52,26 @@ void VibratoPluginAudioProcessorEditor::sliderValueChanged(Slider* slider)
 {
 	if (slider == &modulationWidth) {
 		float widthValue = modulationWidth.getValue();
+		processor.modulationWidthChanged = true;
+		processor.modulationWidth = widthValue;
 		processor.setParameter(0, widthValue);
 	}
 	else if (slider == &modulationFrequency) {
 		float freqValue = modulationFrequency.getValue();
+		processor.modulationWidthChanged = true;
+		processor.modulationFreq = freqValue;
 		processor.setParameter(1, freqValue);
 	}
-	DBG("Debugging and checking this");
+	
 }
 
 void VibratoPluginAudioProcessorEditor::buttonClicked(Button* clickedButton) {
-	std::cout << "Checking";
+	
 	if (clickedButton == &toggleButton) {
 	    bool byPassState = toggleButton.getToggleState();
 	    if(byPassState == true){
-	        processor.setParameter(MOD_WIDTH, 0.0f);
-	        processor.setParameter(MOD_FREQ, 0.0f);
+	        processor.setParameter(0, 0.0f);
+	        processor.setParameter(1, 0.0f);
 	        modulationWidth.setValue(0);
 	        modulationFrequency.setValue(0);
 	    }    
