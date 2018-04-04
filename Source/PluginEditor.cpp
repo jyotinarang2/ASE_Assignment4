@@ -31,7 +31,7 @@ VibratoPluginAudioProcessorEditor::VibratoPluginAudioProcessorEditor (VibratoPlu
     // this function adds the slider to the editor
     addAndMakeVisible (&modulationWidth);
     modulationFrequency.setSliderStyle (Slider::LinearBarVertical);
-    modulationFrequency.setRange(0, 10, 1.0);
+    modulationFrequency.setRange(0, 7, 0.01);
     modulationFrequency.setTextBoxStyle (Slider::NoTextBox, false, 90, 0);
     modulationFrequency.setPopupDisplayEnabled (true, false, this);
     modulationFrequency.setTextValueSuffix (" Modulation Frequency");
@@ -54,13 +54,13 @@ void VibratoPluginAudioProcessorEditor::sliderValueChanged(Slider* slider)
 		float widthValue = modulationWidth.getValue();
 		processor.modulationWidthChanged = true;
 		processor.modulationWidth = widthValue/100;
-		processor.setParameter(0, widthValue/100);
+		//processor.setParameter(0, widthValue/100);
 	}
 	else if (slider == &modulationFrequency) {
 		float freqValue = modulationFrequency.getValue();
 		processor.modulationWidthChanged = true;
 		processor.modulationFreq = freqValue;
-		processor.setParameter(1, freqValue);
+		//processor.setParameter(1, freqValue);
 	}
 	
 }
@@ -70,31 +70,37 @@ void VibratoPluginAudioProcessorEditor::buttonClicked(Button* clickedButton) {
 	if (clickedButton == &toggleButton) {
 	    bool byPassState = toggleButton.getToggleState();
 	    if(byPassState == true){
-	        processor.setParameter(0, 0.0f);
-	        processor.setParameter(1, 0.0f);
+
 	        modulationWidth.setValue(0);
 	        modulationFrequency.setValue(0);
 	    }    
-		processor.pluginByPass = byPassState;
+		processor.setParamByPass(byPassState);
 	
 	}
 }
 //==============================================================================
-void VibratoPluginAudioProcessorEditor::paint (Graphics& g)
-{
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
+void VibratoPluginAudioProcessorEditor::paint(Graphics& g)
 
-    g.setColour (Colours::white);
-    g.setFont (15.0f);
-    g.drawFittedText ("Plugin Sliders", 0, 0, getWidth(), 30, Justification::centred, 1);
+{
+
+	// (Our component is opaque, so we must completely fill the background with a solid colour)
+
+	g.fillAll(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
+	g.setColour(Colours::orange);
+	g.setFont(20.0f);
+	g.drawFittedText("Bypass vibrato", -100, 20, getWidth(), 30, Justification::centred, 1);
 }
 
+
+
 void VibratoPluginAudioProcessorEditor::resized()
+
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
-    modulationWidth.setBounds (40, 30, 20, getHeight() - 60);
-    modulationFrequency.setBounds(120,30, 20, getHeight() - 60);
-    toggleButton.setBounds(200, 150, 200, 30);
+	// This is generally where you'll want to lay out the positions of any
+	// subcomponents in your editor..
+
+	modulationWidth.setBounds(200, 30, 50, getHeight() - 60);
+	modulationFrequency.setBounds(280, 30, 50, getHeight() - 60);
+	toggleButton.setBounds(90, 55, 30, 30);
+
 }
