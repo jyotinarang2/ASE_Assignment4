@@ -52,7 +52,7 @@ void VibratoPluginAudioProcessorEditor::sliderValueChanged(Slider* slider)
 {
 	if (slider == &modulationWidth) {
 		float widthValue = modulationWidth.getValue();
-		processor.setParameter(MODWIDTH, widthValue/100);
+		processor.setParameter(MODWIDTH, widthValue);
 	}
 	else if (slider == &modulationFrequency) {
 		float freqValue = modulationFrequency.getValue();
@@ -65,11 +65,11 @@ void VibratoPluginAudioProcessorEditor::buttonClicked(Button* clickedButton) {
 	
 	if (clickedButton == &toggleButton) {
 	    bool byPassState = toggleButton.getToggleState();
-	    if(byPassState == true){
+	    //if(byPassState == true){
 
-	        modulationWidth.setValue(0);
-	        modulationFrequency.setValue(0);
-	    }    
+	    //    modulationWidth.setValue(0);
+	    //    modulationFrequency.setValue(0);
+	    //}    
 		processor.setParamByPass(byPassState);
 	
 	}

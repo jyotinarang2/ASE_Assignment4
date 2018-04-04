@@ -107,7 +107,7 @@ float VibratoPluginAudioProcessor::getParameter(int param_index) {
 }
 void VibratoPluginAudioProcessor::setParameter(int param_index, float param_value) {
 	if (param_index == 0 && cVibrato) {
-		cVibrato->setParam(CVibrato::VibratoParam_t::kParamModWidthInS, param_value);
+		cVibrato->setParam(CVibrato::VibratoParam_t::kParamModWidthInS, (param_value/100));
 	}
 	else if (param_index == 1 && cVibrato) {
 		cVibrato->setParam(CVibrato::VibratoParam_t::kParamModFreqInHz, param_value);
